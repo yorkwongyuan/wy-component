@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.base.json",
+  "include": ["packages", "typings/components.d.ts", "typings/env.d.ts"],
+  "lib": ["ES2018", "DOM", "DOM.Iterable"],
+  "exclude": [
+    "node_modules",
+    "**/dist",
+    "**/__tests__/**/*",
+    "**/gulpfile.ts",
+    "**/test-helper",
+    "packages/test-utils",
+    "**/*.md"
+  ],
+  "compilerOptions": {
+    "composite": true,
+    "jsx": "preserve",
+  }
+}

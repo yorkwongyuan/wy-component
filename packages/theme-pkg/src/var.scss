@@ -1,0 +1,31 @@
+@use 'common/var.scss' as *;
+@use 'mixins/function.scss' as *;
+@use 'mixins/var' as *;
+
+// common的root
+:root {
+  @include set-component-css-var('fill-color', $fill-color);
+  @include set-component-css-var('text-color', $text-color);
+  @include set-css-var-value('font-weight-primary', 500); // 设置单个变量
+  @include set-component-css-var('border-color', $border-color);
+  @include set-component-css-var('font-size', $font-size);
+  @include set-component-css-var('border-radius', $border-radius);
+  @include set-component-css-var('component-size', $common-component-size);
+  @include set-component-css-var('transition-function', $transition-function);
+  @include set-component-css-var('transition-duration', $transition-duration);
+  @include set-component-css-var('transition', $transition);
+  @include set-component-css-var('scrollbar', $scrollbar);
+}
+
+// light的root
+
+:root {
+  @each $type in (primary, success, warning, danger, error, info) {
+    @include set-css-color-type($colors, $type);
+  };
+  @include set-css-var-value('border-width', $border-width);
+  @include set-css-var-value('border-style', $border-style);
+  @include set-css-var-value('border', getCssVar('border-width') getCssVar('border-style') getCssVar('border-color'));
+  @include set-css-var-value('border-color-hover', $border-color-hover);
+}
+

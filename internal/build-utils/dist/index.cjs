@@ -1,0 +1,1 @@
+module.exports = require("/Users/wangy/IT/vue/components-lib/node_modules/.pnpm/jiti@1.19.1/node_modules/jiti/lib/index.js")(null, { interopDefault: true, esmResolve: true })("/Users/wangy/IT/vue/components-lib/internal/build-utils/src/index.ts")

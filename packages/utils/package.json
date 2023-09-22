@@ -1,0 +1,11 @@
+{
+  "name": "@wy-component/utils",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "wy <631824375@qq.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "vue": "^3.2.0"
+  }
+}

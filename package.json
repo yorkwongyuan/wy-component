@@ -1,0 +1,30 @@
+{
+  "version": "1.0.0",
+  "description": "",
+  "workspaces": [
+    "packages/*",
+    "play",
+    "docs"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "start": "pnpm -C play start"
+  },
+  "keywords": [],
+  "author": "wy <631824375@qq.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@wy-component/build-utils": "workspace:^1.0.0",
+    "@wy-component/components": "workspace:^1.0.0",
+    "@wy-component/constants": "workspace:*",
+    "@wy-component/hooks": "workspace:^1.0.0",
+    "@wy-component/theme": "workspace:^1.0.0",
+    "@wy-component/utils": "workspace:^1.0.0",
+    "unbuild": "^1.2.1",
+    "unplugin-vue-macros": "0.11.2",
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "sass": "^1.64.2"
+  }
+}

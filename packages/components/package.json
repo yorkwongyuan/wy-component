@@ -1,0 +1,16 @@
+{
+  "name": "@wy-component/components",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "module": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "wy <631824375@qq.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "vue": "^3.2.0"
+  }
+}

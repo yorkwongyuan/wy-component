@@ -1,0 +1,60 @@
+@use 'config';
+
+// 连接字符串
+@function joinVarName($list) {
+  $name: '--' + config.$namespace;
+  @each $item in $list {
+    @if $item != '' {
+      $name: $name + '-' + $item
+    }
+  }
+  @return $name;
+}
+
+// 获取css变量所代表的值
+// fill-color -> var(--wy-fill-color)
+@function getCssVar($args...) {
+  @return var(#{joinVarName($args)});
+}
+
+// 获取css变量名
+@function getCssVarName($args...) {
+  @return joinVarName(($args));
+}
+
+// m或者when或者伪类
+@function hitAllSpecialNestRule($selector) {
+  @return containsModifier($selector) or containWhenFlag($selector) or containPseudoClass($selector);
+}
+
+@function selectorToString($selector) {
+  $selector: inspect($selector);
+  @return str-slice($selector, 2, -2);
+}
+
+// 是否包含--
+@function containsModifier($selector) {
+  @if str-index($selector, config.$modifier-separator) {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+// 是否包含is-
+@function containWhenFlag($selector) {
+  @if str-index($selector, '.' + $state-prefix) {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+// 是否包含伪类
+@function containPseudoClass($selector) {
+  @if str-index($selector, ':') {
+    @return true;
+  } @else {
+    @return false;
+  }
+}

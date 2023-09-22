@@ -1,0 +1,1 @@
+import "@wy-component/theme/src/base.scss";

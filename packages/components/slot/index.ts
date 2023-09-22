@@ -1,0 +1,1 @@
+export { OnlyChild as WyOnlyChild } from './src/only-child';

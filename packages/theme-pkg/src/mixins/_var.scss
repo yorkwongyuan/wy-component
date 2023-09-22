@@ -1,0 +1,49 @@
+@use './function.scss' as *;
+@use 'sass:map';
+
+// 获取一个组件的css变量
+@mixin set-component-css-var($block, $map) {
+  @each $attribute, $value in $map {
+    @if $attribute == 'default' {
+      #{getCssVarName($block)}: #{$value}
+    } @else {
+      #{getCssVarName($block, $attribute)}: #{$value}
+    }
+  }
+}
+
+// 设置css变量的值
+@mixin set-css-var-value($name, $value) {
+  #{joinVarName($name)}: #{$value};
+}
+
+
+@mixin set-componet-css-var-new($block, $list) {
+  @each $attribute,$value in $list {
+    @if $attribute != default {
+      #{getCssVarName($attribute)}:#{$value};
+    } @else {
+      #{getCssVarName($block, $attribute)}:#{$value};
+    }
+  }
+}
+
+// 将$colors的某种type色系转为变量
+@mixin set-css-color-type($colors, $type) {
+  // 主色调转为变量
+  @include set-css-var-value(('color', $type), map.get($colors, $type, 'base'));
+  // 派生色
+  @each $i in (3,5,7,8,9) {
+    @include set-css-var-value(('color', $type, 'light', $i), map.get($colors, $type, 'light-#{$i}'));
+  }
+}
+
+// 重新设置现有的全局变量
+// 将两个参数分别组装为一个css变量, 然后让前者为键, 后者为值
+// 一般来说, 第一个参数组成的css变量都是某个组件的固定变量, 比如: button-xx-xx这种, 然后通过第二个参数, 改变固定变量的值
+// 从而实现样式的改变
+@mixin css-var-from-global($var, $gVar) {
+  $key: joinVarName($var);
+  $value: joinVarName($gVar);
+  #{$key}: var(#{$value});
+}

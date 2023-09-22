@@ -1,0 +1,23 @@
+{
+  "name": "@wy-component/build-utils",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "unbuild",
+    "dev": "pnpm run stub",
+    "stub": "unbuild --stub"
+  },
+  "keywords": [],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "author": "wy <631824375@qq.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "unbuild": "^1.2.1"
+  },
+  "dependencies": {
+    "@pnpm/find-workspace-packages": "^6.0.9",
+    "@pnpm/logger": "^5.0.0"
+  }
+}

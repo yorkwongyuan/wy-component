@@ -1,0 +1,100 @@
+@use '../mixins/function' as *;
+@use '_var' as *;
+@forward 'function';
+@mixin button-size (
+$padding-vertical,
+$padding-horizontal,
+$font-size,
+$border-radius) {
+  padding: $padding-vertical $padding-horizontal;
+  font-size: $font-size;
+  border-radius: $border-radius;
+  &.is-round {
+    padding: $padding-vertical $padding-horizontal;
+  }
+}
+
+@mixin button-variant($type) {
+  $button-color-types: (
+    '': (
+      'text-color': (
+        'color',
+        'white',
+      ),
+      'bg-color': (
+        'color',
+        $type,
+      ),
+      'border-color': (
+        'color',
+        $type,
+      ),
+      'outline-color': (
+        'color',
+        $type,
+        'light-5',
+      ),
+      'active-color': (
+        'color',
+        $type,
+        'dark-2',
+      ),
+    ),
+    'hover': (
+      'text-color': (
+        'color',
+        'white',
+      ),
+      'link-text-color': (
+        'color',
+        $type,
+        'light-5',
+      ),
+      'bg-color': (
+        'color',
+        $type,
+        'light-3',
+      ),
+      'border-color': (
+        'color',
+        $type,
+        'light-3',
+      ),
+    ),
+    'active': (
+      'bg-color': (
+        'color',
+        $type,
+        'dark-2',
+      ),
+      'border-color': (
+        'color',
+        $type,
+        'dark-2',
+      ),
+    ),
+    'disabled': (
+      'text-color': (
+        'color',
+        'white',
+      ),
+      'bg-color': (
+        'color',
+        $type,
+        'light-5',
+      ),
+      'border-color': (
+        'color',
+        $type,
+        'light-5',
+      ),
+    ),
+  );
+  // $action就是hover、active等
+  @each $action, $data in $button-color-types {
+    // $key则是bg-color、text-color等
+    @each $key, $value in $data {
+      @include css-var-from-global(('button', $action, $key), $value);
+    }
+  }
+}
