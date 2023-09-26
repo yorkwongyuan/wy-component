@@ -335,4 +335,87 @@ $scrollbar: map.merge(
     'hover-bg-color': getCssVar('text-color-secondary'),
   ),
   $scrollbar
-)
+);
+
+$radio: () !default;
+$radio: map.merge(
+  (
+    'font-size': getCssVar('font-size-base'),
+    'text-color': getCssVar('text-color-regular'),
+    'font-weight': getCssVar('font-weight-primary'),
+    'input-height': 14px,
+    'input-width': 14px,
+    'input-border-radius': getCssVar('border-radius-circle'),
+    'input-bg-color': getCssVar('fill-color', 'blank'),
+    'input-border': getCssVar('border'),
+    'input-border-color': getCssVar('border-color'),
+    'input-border-color-hover': getCssVar('color-primary'),
+  ),
+  $radio
+);
+
+$radio-height: () !default;
+$radio-height: map.merge($common-component-size, $radio-height);
+
+$checkbox-bordered-padding-right: () !default;
+$checkbox-bordered-padding-right: map.merge(
+  (
+    'large': 20px,
+    'default': 16px,
+    'small': 12px,
+  ),
+  $checkbox-bordered-padding-right
+);
+
+$checkbox-bordered-padding-left: () !default;
+$checkbox-bordered-padding-left: map.merge(
+  (
+    'large': 12px,
+    'default': 10px,
+    'small': 8px,
+  ),
+  $checkbox-bordered-padding-left
+);
+
+$radio-bordered-input-height: () !default;
+$radio-bordered-input-height: map.merge(
+  (
+    'large': 14px,
+    'default': 12px,
+    'small': 12px,
+  ),
+  $radio-bordered-input-height
+);
+
+$radio-bordered-input-width: () !default;
+$radio-bordered-input-width: map.merge(
+  (
+    'large': 14px,
+    'default': 12px,
+    'small': 12px,
+  ),
+  $radio-bordered-input-width
+);
+
+$radio-disabled: () !default;
+$radio-disabled: map.merge(
+  (
+    'input-border-color': getCssVar('disabled-border-color'),
+    'input-fill': getCssVar('disabled-bg-color'),
+    'icon-color': getCssVar('disabled-bg-color'),
+    'checked-input-border-color': getCssVar('disabled-border-color'),
+    'checked-input-fill': getCssVar('disabled-bg-color'),
+    'checked-icon-color': getCssVar('text-color-placeholder'),
+  ),
+  $radio-disabled
+);
+
+$radio-checked: () !default;
+$radio-checked: map.merge(
+  (
+    'text-color': getCssVar('color-primary'),
+    'input-border-color': getCssVar('color-primary'),
+    'icon-color': getCssVar('color-primary'),
+  ),
+  $radio-checked
+);

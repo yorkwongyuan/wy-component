@@ -1,7 +1,6 @@
 {
   "extends": "./tsconfig.base.json",
   "include": ["packages", "typings/components.d.ts", "typings/env.d.ts"],
-  "lib": ["ES2018", "DOM", "DOM.Iterable"],
   "exclude": [
     "node_modules",
     "**/dist",
@@ -14,5 +13,7 @@
   "compilerOptions": {
     "composite": true,
     "jsx": "preserve",
+    "lib": ["ES2018", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true
   }
 }

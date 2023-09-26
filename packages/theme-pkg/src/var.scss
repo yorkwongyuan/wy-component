@@ -4,6 +4,7 @@
 
 // common的root
 :root {
+  @include set-css-var-value('color-white', $color-white);
   @include set-component-css-var('fill-color', $fill-color);
   @include set-component-css-var('text-color', $text-color);
   @include set-css-var-value('font-weight-primary', 500); // 设置单个变量
@@ -15,6 +16,7 @@
   @include set-component-css-var('transition-duration', $transition-duration);
   @include set-component-css-var('transition', $transition);
   @include set-component-css-var('scrollbar', $scrollbar);
+  @include set-component-css-var('radio', $radio);
 }
 
 // light的root
