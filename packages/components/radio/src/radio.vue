@@ -1,7 +1,7 @@
 <template>
-  <label :class="[ns.b(), ns.is('checked', modelValue === label)]">
-    <div :class="[ns.e('input'), ns.is('checked', modelValue === label)]">
-      <input ref="radioRef" @change="handleChange" :value="label" type="radio" v-model="modelValue" :class="ns.e('original')">
+  <label :class="[ns.b(), ns.is('checked', modelValue === label), ns.m(size), ns.is('disabled', disabled)]">
+    <div :class="[ns.e('input'), ns.is('checked', modelValue === label), ns.is('disabled', disabled)]">
+      <input ref="radioRef" :disabled="disabled" @change="handleChange" :value="label" type="radio" v-model="modelValue" :class="ns.e('original')">
       <div :class="ns.e('inner')"></div>
     </div>
     <span :class="ns.e('label')" @keydown.stop>
@@ -25,7 +25,7 @@ defineOptions({
   name: 'WyRadio'
 })
 
-const { modelValue, radioRef } = useRadio(props, emits)
+const { modelValue, radioRef, size, disabled } = useRadio(props, emits)
 
 function handleChange () {
   nextTick(() => {

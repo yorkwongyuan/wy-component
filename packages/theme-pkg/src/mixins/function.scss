@@ -58,3 +58,7 @@
     @return false;
   }
 }
+// 获取css变量的值, 并且允许默认值存在
+@function getCssVarWithDefault($args, $default) {
+  @return var(#{joinVarName($args)}, #{$default})
+}

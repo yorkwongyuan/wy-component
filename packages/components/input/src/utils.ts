@@ -72,7 +72,7 @@ export function calcTextareaHeight (targetElement: HTMLTextAreaElement, minRows 
   // 赋值, 用于计算scrollHeight
   hiddenTextarea.value = targetElement.value || targetElement.placeholder || ''
 
-  let height = targetElement.scrollHeight
+  let height = hiddenTextarea.scrollHeight
   // 计算出节点高度
   // scrollHeight会把padding算进去的
   // boder-box下, height基本就是盒子的css中的height了
