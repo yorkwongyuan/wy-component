@@ -1,5 +1,10 @@
 <template>
-  <label :class="[ns.b(), ns.is('checked', modelValue === label), ns.m(size), ns.is('disabled', disabled)]">
+  <label :class="[
+    ns.b(),
+    ns.is('checked', modelValue === label),
+    ns.m(size), ns.is('disabled', disabled),
+    ns.is('bordered', border)
+  ]">
     <div :class="[ns.e('input'), ns.is('checked', modelValue === label), ns.is('disabled', disabled)]">
       <input ref="radioRef" :disabled="disabled" @change="handleChange" :value="label" type="radio" v-model="modelValue" :class="ns.e('original')">
       <div :class="ns.e('inner')"></div>

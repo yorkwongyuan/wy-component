@@ -1,5 +1,5 @@
 import type { ComponentSize } from "@wy-component/constants"
-import {unref ,computed, inject} from 'vue'
+import {unref ,computed, inject, type ComputedRef} from 'vue'
 import { useProp } from "@wy-component/hooks/use-prop"
 import { formContextKey } from "../constants"
 
@@ -10,7 +10,7 @@ export const useFormSize = (fallback?: any) => {
 }
 
 // 给表单元素传递disabled属性
-export const useFormDisabled = <T>(fallback?:any) => {
+export const useFormDisabled = <T>(fallback?:any):ComputedRef<T> => {
   const disabled = useProp<boolean>('disabled')
   const form = inject(formContextKey, undefined)
   return computed(() => disabled.value || unref(fallback) || form?.disabled)

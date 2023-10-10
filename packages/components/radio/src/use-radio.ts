@@ -6,11 +6,11 @@ import { radioGroupKey } from './constant'
 
 export const useRadio = (props: {label: RadioProps['label']; modelValue?: RadioProps['modelValue']}, emit?: SetupContext<RadioEmits>['emit']) => {
   const radioRef = ref<HTMLInputElement>()
-  const size = useFormSize()
-  const disabled = useFormDisabled()
   const focus = ref(false)
   // radio-group组件通过provide传入的值
   const radioGroup = inject(radioGroupKey, undefined)
+  const size = useFormSize(computed(() => radioGroup?.size))
+  const disabled = useFormDisabled<boolean>(computed(() => radioGroup?.disabled))
   // 是否存在group组件
   const isGroup = computed(() => !!radioGroup)
   const modelValue = computed<RadioProps['modelValue']>({
@@ -29,6 +29,8 @@ export const useRadio = (props: {label: RadioProps['label']; modelValue?: RadioP
   })
 
   return {
+    radioGroup,
+    isGroup,
     modelValue,
     radioRef,
     size,

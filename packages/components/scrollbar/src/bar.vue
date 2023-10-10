@@ -13,7 +13,6 @@
     const offsetHeight = wrap.offsetHeight - GAP
     const offsetWidth = wrap.offsetWidth - GAP
     moveY.value = ((wrap.scrollTop * 100) / offsetHeight) * props.ratioY
-    console.log('🚀 props.ratioY:', props.ratioY)
     moveX.value = ((wrap.scrollLeft * 100) / offsetWidth) * props.ratioX
   }
 
