@@ -23,7 +23,6 @@ export const useForwardRef = <T>(forwardRef: Ref<T | null>) => {
 export const useForwardRefDirective = (setForwardRef: ForwardRefSetter):ObjectDirective => {
   return {
     mounted (el) {
-      console.log('🚀 ~ file: index.ts:26 ~ mounted ~ el:', el)
       setForwardRef(el)
     },
     updated (el) {

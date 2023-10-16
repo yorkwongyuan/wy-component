@@ -17,6 +17,7 @@ export const OnlyChild = defineComponent({
       if (!defaultSlot) return
 
       if (defaultSlot.length > 1) return
+      console.log('🚀 ~ file: only-child.tsx:20 ~ return ~ defaultSlot:', defaultSlot)
       const firstLegitNode = findFirstLegitChild(defaultSlot)
       return withDirectives(cloneVNode(firstLegitNode!, attrs), [[forwardRefDirective]])
     }
@@ -32,6 +33,7 @@ export const OnlyChild = defineComponent({
               continue;
             case Text:
             case 'svg':
+              console.log('text', child)
               return getTextVnode(child)
             case Fragment: // 碎片节点
               return findFirstLegitChild(child.children as VNode[])

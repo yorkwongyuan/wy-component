@@ -11,3 +11,5 @@ export const isStringNumber = (value: string):boolean => {
   }
   return !Number.isNaN(Number(value))
 }
+
+export const isUndefined = (val: any): val is undefined => val === undefined

@@ -14,6 +14,7 @@ const props = defineProps(thumbProps)
 const ns = useNamespace('scrollbar')
 
 const scrollbar = inject(scrollbarContextKey)
+console.log('🚀 ~ file: thumb.vue:17 ~ scrollbar:', scrollbar)
 if (!scrollbar) {
   console.log('缺少scrollbar')
 }
@@ -48,7 +49,7 @@ const clickThumbHandler = (e: MouseEvent) => {
   thumbState.value[bar.value.axis] = el[bar.value.offset] - (e[bar.value.client] - el.getBoundingClientRect()[bar.value.direction])
 }
 
-// 实际上的thumb可滚动距离 / 理论上的thumb可滚动距离
+// (原本的thumb可滚动距离 / minHeight加持后的thumb可滚动距离) >=1
 const offsetRatio = computed(() => {
   const instanceOffset = instance.value![bar.value.offset]
   const currentThumb = thumb.value![bar.value.offset]
@@ -63,12 +64,12 @@ const mouseMoveDocumentHandler = (e: MouseEvent) => {
   const prevPage = thumbState.value[bar.value.axis]
   if (!prevPage) return
 
-  // 鼠标到滑块顶部的距离
+  // 鼠标点击处到instance顶部的距离
   const offset = e[bar.value.client] - instance.value.getBoundingClientRect()[bar.value.direction]
   // 鼠标点击点距离thumb顶部距离
   const thumbClickPosition = thumb.value[bar.value.offset] - prevPage
-  const thumbPositionPercentage = ((offset - thumbClickPosition) * 100 * offsetRatio.value) / instance.value[bar.value.offset]
-  const reuslt = thumbPositionPercentage * scrollbar.wrapElement[bar.value.scrollSize] / 100
+  const thumbPositionPercentage = ((offset - thumbClickPosition) * offsetRatio.value) / instance.value[bar.value.offset]
+  const reuslt = thumbPositionPercentage * scrollbar.wrapElement[bar.value.scrollSize]
   scrollbar.wrapElement[bar.value.scroll] = reuslt
 }
 
@@ -81,11 +82,9 @@ const mouseUpDocumentHandler = () => {
 const clickTrackHandler = (e: MouseEvent) => {
   if (!thumb.value || !instance.value || !scrollbar || !scrollbar.wrapElement) return
   const el = e.target as HTMLDivElement
-  console.log('🚀 ~ file: thumb.vue:84 ~ clickTrackHandler ~ el:', el)
   const offset = Math.abs(e[bar.value.client] - el.getBoundingClientRect()[bar.value.direction])
   const thumbHalf = thumb.value[bar.value.offset] / 2
   const thumbPositionPercentage = (offset - thumbHalf) * offsetRatio.value / instance.value[bar.value.offset]
-  console.log(thumbPositionPercentage * scrollbar.wrapElement[bar.value.scrollSize], 'thumbPositionPercentage * scrollbar.wrapElement[bar.value.scrollSize]')
   scrollbar.wrapElement[bar.value.scroll] = thumbPositionPercentage * scrollbar.wrapElement[bar.value.scrollSize]
 }
 

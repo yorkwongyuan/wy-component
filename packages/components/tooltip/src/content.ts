@@ -5,7 +5,18 @@ import type Content from './content.vue'
 
 export const useTooltipContentProps = buildProps({
   ...useDelayedToggleProps,
-  ...popperContentProps
+  ...popperContentProps,
+  content: {
+    type: String,
+    default: '',
+  },
+  /**
+   * @description whether `content` is treated as HTML string
+   */
+  rawContent: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 export type ContentInstance = InstanceType<typeof Content>

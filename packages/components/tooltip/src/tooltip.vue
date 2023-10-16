@@ -4,7 +4,10 @@
       <slot v-if="$slots.default" />
     </wy-tooltip-trigger>
     <wy-tooltip-content ref="contentRef" :placement="placement">
-      <slot name="content" />
+      <slot name="content">
+        <span v-if="rawContent" v-html="content"></span>
+        <span v-else>{{ content }}</span>
+      </slot>
     </wy-tooltip-content>
   </wy-popper>
 </template>

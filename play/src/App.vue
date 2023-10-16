@@ -1,20 +1,16 @@
 <template>
-  <div class='box'>
-    {{data}}12
-    <wy-radio-group size="small" v-model="data">
-      <wy-radio-button label="a" v-model="data">1</wy-radio-button>
-      <wy-radio-button label="b" v-model="data">2</wy-radio-button>
-      <wy-radio label="c" border></wy-radio>
-    </wy-radio-group>
+  <div class='box'>{{bool}}
+    <wy-checkbox v-model="bool" @change="handleChange"></wy-checkbox>
   </div>
 </template>
 <script lang="ts" setup>
-  import { WyRadioButton, WyRadioGroup, WyRadio } from '@wy-component/components';
-  import '@wy-component/components/radio/style'
-  import '@wy-component/components/radio-group/style'
-  import '@wy-component/components/radio-button/style'
+  import { WyCheckbox } from '@wy-component/components';
+  import '@wy-component/components/scrollbar/style'
   import { ref } from 'vue'
-  const data = ref<string>('a')
+  const bool = ref('')
+  const handleChange = (value) => {
+    console.log('🚀 ~ file: App.vue:12 ~ handleChange ~ value:', value)
+  }
 </script>
 <style lang="scss">
 html, body {
