@@ -10,7 +10,7 @@ export const useFormSize = (fallback?: any) => {
 }
 
 // 给表单元素传递disabled属性
-export const useFormDisabled = <T>(fallback?:any):ComputedRef<T> => {
+export const useFormDisabled = <T>(fallback?:any):ComputedRef<boolean | undefined> => {
   const disabled = useProp<boolean>('disabled')
   const form = inject(formContextKey, undefined)
   return computed(() => disabled.value || unref(fallback) || form?.disabled)

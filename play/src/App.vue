@@ -1,6 +1,6 @@
 <template>
   <div class='box'>{{bool}}
-    <wy-checkbox v-model="bool" @change="handleChange"></wy-checkbox>
+    <wy-checkbox disabled v-model="bool" name="haha" @change="handleChange">haha</wy-checkbox>
   </div>
 </template>
 <script lang="ts" setup>
