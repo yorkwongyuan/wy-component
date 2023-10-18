@@ -1,6 +1,7 @@
 import { buildProps, isString, isBoolean, isNumber } from "@wy-component/utils";
 import { UPDATE_MODEL_EVENT } from "@wy-component/constants";
 import { type ExtractPropTypes } from 'vue'
+import { useSizeProp } from "@wy-component/hooks";
 
 export type CheckboxGroupValueType = string | number | boolean
 
@@ -18,7 +19,8 @@ export const checkboxGroupProps = buildProps({
   },
   max: Number,
   min: Number,
-  disabled: Boolean
+  disabled: Boolean,
+  size: useSizeProp
 })
 
 export type CheckboxGroupProps = ExtractPropTypes<typeof checkboxGroupProps>

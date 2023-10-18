@@ -17,6 +17,7 @@
   @include set-component-css-var('transition', $transition);
   @include set-component-css-var('scrollbar', $scrollbar);
   @include set-component-css-var('radio', $radio);
+  @include set-component-css-var('checkbox', $checkbox);
 }
 
 // light的root

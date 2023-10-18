@@ -1,11 +1,11 @@
 <template>
   <div class='box'>{{bool}}
-    <wy-checkbox disabled v-model="bool" name="haha" @change="handleChange">haha</wy-checkbox>
+    <wy-checkbox v-model="bool" name="haha" @change="handleChange"></wy-checkbox>
   </div>
 </template>
 <script lang="ts" setup>
   import { WyCheckbox } from '@wy-component/components';
-  import '@wy-component/components/scrollbar/style'
+  import '@wy-component/components/checkbox/style'
   import { ref } from 'vue'
   const bool = ref('')
   const handleChange = (value) => {

@@ -30,7 +30,8 @@
       toRefs(props), [
       'max',
       'min',
-      'disabled'
+      'disabled',
+      'size'
     ]),
     modelValue,
     changeEvent

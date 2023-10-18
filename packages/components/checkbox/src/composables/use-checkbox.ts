@@ -7,7 +7,7 @@ import { useCheckboxDisabled } from './use-checkbox-disabled'
 
 export const useCheckbox = (props: CheckboxProps, slots: ComponentInternalInstance['slots']) => {
   const { model } = useCheckboxModel(props)
-  const { hasOwnLabel, isChecked } = useCheckboxStatus(props, slots, {model})
+  const { hasOwnLabel, isChecked, isFocused, checkboxSize } = useCheckboxStatus(props, slots, {model})
   const { handleChange } = useCheckboxEvent(props, {
     model,
     hasOwnLabel
@@ -19,6 +19,9 @@ export const useCheckbox = (props: CheckboxProps, slots: ComponentInternalInstan
     model,
     handleChange,
     isDisabled,
-    isLimitDisabled
+    isLimitDisabled,
+    isFocused,
+    isChecked,
+    checkboxSize
   }
 }

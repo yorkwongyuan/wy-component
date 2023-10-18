@@ -1,9 +1,10 @@
 import { type CheckboxProps } from '../checkbox'
-import { type ComponentInternalInstance, computed, inject } from 'vue'
+import { type ComponentInternalInstance, computed, inject, ref } from 'vue'
 import { checkboxGroupContextKey } from '../constant'
 import {type CheckboxModel} from '.'
 import { isBoolean, isObject } from '@wy-component/utils'
 import { isEqual } from 'lodash'
+import { useFormSize } from '@wy-component/components/form'
 
 export const useCheckboxStatus = (
     props: CheckboxProps,
@@ -11,7 +12,7 @@ export const useCheckboxStatus = (
     {model}: Pick<CheckboxModel, 'model'>
   ) => {
   const checkboxGroup = inject(checkboxGroupContextKey, undefined)
-
+  const isFocused = ref(false)
   // 是否选中
   const isChecked = computed<boolean>(() => {
     const value = model.value
@@ -33,9 +34,12 @@ export const useCheckboxStatus = (
   const hasOwnLabel = computed(() => {
     return !!(slots.default || slots.label)
   })
+  const checkboxSize = useFormSize(computed(() => checkboxGroup?.size?.value))
   return {
     hasOwnLabel,
-    isChecked
+    isChecked,
+    isFocused,
+    checkboxSize
   }
 }
 

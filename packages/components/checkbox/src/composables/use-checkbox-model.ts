@@ -10,7 +10,6 @@ export const useCheckboxModel = (props: CheckboxProps) => {
   const model = computed({
     get() {
       const checkboxGroup = inject(checkboxGroupContextKey, undefined)
-      console.log('🚀 ~ file: use-checkbox-model.ts:13 ~ get ~ checkboxGroup:', checkboxGroup)
       const isGroup = computed(() => checkboxGroup)
       if (isGroup.value) {
         return checkboxGroup?.modelValue?.value
