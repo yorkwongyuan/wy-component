@@ -1,5 +1,8 @@
 import { type ExtractPropTypes } from 'vue'
 import { useSizeProp } from '@wy-component/hooks'
+
+export type CheckboxValueType = string | number | boolean
+
 export const checkboxProps = {
   modelValue: {
     type: [String, Number, Boolean],
@@ -22,6 +25,7 @@ export const checkboxProps = {
   indeterminate: Boolean,
   border: Boolean,
   size: useSizeProp,
+  tabindex: [String, Number],
 }
 
 export type CheckboxProps = ExtractPropTypes<typeof checkboxProps>

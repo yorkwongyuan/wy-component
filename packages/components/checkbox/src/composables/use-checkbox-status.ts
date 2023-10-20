@@ -1,5 +1,5 @@
 import { type CheckboxProps } from '../checkbox'
-import { type ComponentInternalInstance, computed, inject, ref } from 'vue'
+import { type ComponentInternalInstance, computed, inject, ref, toRaw } from 'vue'
 import { checkboxGroupContextKey } from '../constant'
 import {type CheckboxModel} from '.'
 import { isBoolean, isObject } from '@wy-component/utils'
@@ -21,10 +21,12 @@ export const useCheckboxStatus = (
     } else if (Array.isArray(value)) {
       // 如果label是对象
       if (isObject(props.label)) {
-        return value.some(o => isEqual(props.label, o))
+        return value.map(toRaw).some(o => isEqual(props.label, o))
       } else {
-        return value.includes(props.label)
+        return value.map(toRaw).includes(props.label)
       }
+    } else if (value !== null && value !== undefined) {
+      return value === props.trueLabel
     } else {
       return !!value
     }
@@ -32,14 +34,21 @@ export const useCheckboxStatus = (
 
   // 是否有自定义label
   const hasOwnLabel = computed(() => {
-    return !!(slots.default || slots.label)
+    return !!(slots.default || props.label)
   })
+  const checkboxButtonSize = useFormSize(
+    computed(() => checkboxGroup?.size?.value),
+      {
+        prop: true
+      }
+    )
   const checkboxSize = useFormSize(computed(() => checkboxGroup?.size?.value))
   return {
     hasOwnLabel,
     isChecked,
     isFocused,
-    checkboxSize
+    checkboxSize,
+    checkboxButtonSize
   }
 }
 

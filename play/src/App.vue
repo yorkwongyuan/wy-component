@@ -1,13 +1,17 @@
 <template>
-  <div class='box'>{{bool}}
-    <wy-checkbox v-model="bool" name="haha" @change="handleChange"></wy-checkbox>
+  <div class='box'>
+    {{arr}}
+    <wy-checkbox-group v-model="arr">
+      <wy-checkbox-button label="a" name="haha" @change="handleChange"></wy-checkbox-button>
+      <wy-checkbox-button label="b" name="haha" @change="handleChange"></wy-checkbox-button>
+    </wy-checkbox-group>
   </div>
 </template>
 <script lang="ts" setup>
-  import { WyCheckbox } from '@wy-component/components';
-  import '@wy-component/components/checkbox/style'
+  import { WyCheckbox, WyCheckboxGroup, WyCheckboxButton } from '@wy-component/components';
+  import '@wy-component/components/checkbox-button/style'
   import { ref } from 'vue'
-  const bool = ref('')
+  const arr = ref(['a'])
   const handleChange = (value) => {
     console.log('🚀 ~ file: App.vue:12 ~ handleChange ~ value:', value)
   }

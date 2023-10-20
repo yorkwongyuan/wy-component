@@ -15,24 +15,26 @@
     emits(UPDATE_MODEL_EVENT, val)
   }
   const props = defineProps(checkboxGroupProps)
-  const modelValue = computed(() => {
-    return {
-      get () {
-        return props.modelValue
-      },
-      set (val: CheckboxGroupValueType) {
-        changeEvent(val)
-      }
+  const modelValue = computed({
+    get () {
+      console.log(props.modelValue, 'props.value')
+      return props.modelValue
+    },
+    set (val: CheckboxGroupValueType) {
+      changeEvent(val)
     }
   })
   provide(checkboxGroupContextKey, {
     ...pick(
-      toRefs(props), [
-      'max',
-      'min',
-      'disabled',
-      'size'
-    ]),
+        toRefs(props), [
+        'max',
+        'min',
+        'disabled',
+        'size',
+        'fill',
+        'textColor'
+      ]
+    ),
     modelValue,
     changeEvent
   })

@@ -1,9 +1,9 @@
-import { buildProps, isString, isBoolean, isNumber } from "@wy-component/utils";
+import { buildProps, isString, isBoolean, isNumber, defineProptype } from "@wy-component/utils";
 import { UPDATE_MODEL_EVENT } from "@wy-component/constants";
 import { type ExtractPropTypes } from 'vue'
 import { useSizeProp } from "@wy-component/hooks";
-
-export type CheckboxGroupValueType = string | number | boolean
+import { type CheckboxProps, type CheckboxValueType } from './checkbox'
+export type CheckboxGroupValueType = Exclude<CheckboxValueType, boolean>[]
 
 export const checkboxEmits = {
   [UPDATE_MODEL_EVENT]: (val: CheckboxGroupValueType): val is CheckboxGroupValueType => (isString(val) || isBoolean(val) || isNumber(val))
@@ -11,7 +11,8 @@ export const checkboxEmits = {
 
 export const checkboxGroupProps = buildProps({
   modelValue: {
-    type: [String, Number, Boolean]
+    type: defineProptype<CheckboxGroupValueType>(Array),
+    default: () => []
   },
   tag: {
     type: String,
@@ -20,7 +21,9 @@ export const checkboxGroupProps = buildProps({
   max: Number,
   min: Number,
   disabled: Boolean,
-  size: useSizeProp
+  size: useSizeProp,
+  fill: String,
+  textColor: String
 })
 
 export type CheckboxGroupProps = ExtractPropTypes<typeof checkboxGroupProps>

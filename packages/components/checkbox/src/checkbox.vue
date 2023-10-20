@@ -15,18 +15,21 @@
       />
       <input
         v-else
-        type="checkbox"
-        :class="ns.e('original')"
-        :name="name"
-        :value="label"
+        :id="Math.random() + ''"
         v-model="model"
-        @change="handleChange"
+        :class="ns.e('original')"
+        type="checkbox"
         :disabled="isDisabled"
+        :value="label"
+        :name="name"
+        :tabindex="tabindex"
+        @change="handleChange"
         @focus="isFocused = true"
+        @blur="isFocused = false"
       />
       <span :class="ns.e('inner')" />
     </span>
-    <span v-if="hasOwnLabel">
+    <span v-if="hasOwnLabel" :class="ns.e('label')">
       <slot/>
       <template v-if="!$slots.default">
         {{label}}
@@ -35,7 +38,7 @@
   </component>
 </template>
 <script setup lang="ts">
-import { useSlots, computed, ref } from 'vue'
+import { useSlots, computed } from 'vue'
 import { useNamespace } from '@wy-component/hooks'
 import { useCheckbox } from './composables'
 import { checkboxProps } from './checkbox'

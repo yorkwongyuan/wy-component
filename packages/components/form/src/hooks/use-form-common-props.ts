@@ -1,11 +1,12 @@
 import type { ComponentSize } from "@wy-component/constants"
-import {unref ,computed, inject, type ComputedRef} from 'vue'
+import {ref, unref ,computed, inject, type ComputedRef} from 'vue'
 import { useProp } from "@wy-component/hooks/use-prop"
 import { formContextKey } from "../constants"
 
 // 表单元素size
-export const useFormSize = (fallback?: any) => {
-  const size = useProp<ComponentSize>('size')
+export const useFormSize = (fallback?: any, ignored: Partial<Record<'prop', boolean>> = {}) => {
+  const emptyRef = ref(undefined)
+  const size = ignored.prop ? emptyRef : useProp<ComponentSize>('size')
   return computed(():ComponentSize => size.value || unref(fallback))
 }
 
